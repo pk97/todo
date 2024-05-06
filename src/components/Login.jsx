@@ -1,9 +1,11 @@
 import './Login.css'
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 const Login = () => {
     const [username,setUsername] = useState();
     const [password,setPassword] = useState();
     const [loginMessage, setLoginMessage] = useState(false);
+    const navigate = useNavigate();
 
  function handlerUsername(event) {
      console.log(event);
@@ -13,9 +15,10 @@ const Login = () => {
     const handlerPassword = (event) =>{
         setPassword((event.target.value));
     }
-    const validate = () => {
+    const validate = async () => {
         console.log(username === "123" && password === "123");
-     setLoginMessage((username === "123" && password === "123") ? "Success" : "Failure");
+     await setLoginMessage((username === "123" && password === "123") ? "Success" : "Failure");
+     if (loginMessage === "Success") navigate(`/welcome/${username}`);
     }
 
     return (
