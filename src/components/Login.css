@@ -1,0 +1,17 @@
+.Login {
+    align-content: center;
+}
+label {
+    padding: 5px;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+}
+
+button {
+    margin: 15px;
+    padding: 5px;
+}
+
