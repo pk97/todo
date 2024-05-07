@@ -1,9 +1,8 @@
 import {useContext} from "react";
-import {AuthContext} from "./security/AuthContext";
+import {AuthContext, useAuth} from "./security/AuthContext";
 
 const HeaderComponent = () => {
-
-    const authContext = useContext(AuthContext);
+    const authContext = useAuth();
     return (<header>
         <h1> Todo Application </h1>
         <button className="logoutButton" onClick={() => {
