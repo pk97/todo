@@ -1,8 +1,10 @@
 .Login {
     align-content: center;
+    margin-top: 40px;
 }
 label {
     padding: 5px;
+    margin: 10px;
 }
 
 input {

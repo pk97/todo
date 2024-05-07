@@ -1,4 +1,23 @@
 .App {
   text-align: center;
+  margin-top: 4%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;  /* Positions at bottom of viewport */
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+header {
+  display: flex;  /* Make header a flex container for alignment */
+  /*justify-content: space-between; !* Align items at opposite ends *!*/
+  margin: 2%;
+}
+.logoutButton {
+  padding: 2px;
+  position: absolute;
+  right: 1%;
 }
 

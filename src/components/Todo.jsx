@@ -4,17 +4,33 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Welcome from "./Welcome";
 import Error from "./Error";
 const Todo = () => {
+    const todos = [
+        {id: '1', description: 'Work to do'},
+        {id: '2', description: 'Read Books'},
+        {id: '3', description: 'Document learnings'},
+        {id: '4', description: 'Work to do'},
+    ];
+
     return (
         <>
-        <div className="Todo"> TODO Application</div>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<Login/>}></Route>
-                    <Route path='/login' element={<Login/>}></Route>
-                    <Route path='/welcome/:username' element={<Welcome/>}></Route>
-                    <Route path={'/*'} element={<Error/>}></Route>
-                </Routes>
-            </BrowserRouter>
+            <div className="container"> Todo List</div>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                {/*use ( pareenthises becausing returning JSX*/}
+                {todos.map(todo => (
+                    <tr>
+                        <td>{todo.id}</td>
+                        <td>{todo.description}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
         </>
     );
 };
