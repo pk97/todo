@@ -15,9 +15,9 @@ function App() {
   return (
       <div className="App">
           <AuthProvider>
-              <HeaderComponent/>
-              <hr/>
               <BrowserRouter>
+                  <HeaderComponent/>
+                  <hr/>
                   <Routes>
                       <Route path='/' element={<Login/>}></Route>
                       <Route path='/login' element={<Login/>}></Route>

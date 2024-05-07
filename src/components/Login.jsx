@@ -1,12 +1,13 @@
 import './Login.css'
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "./security/AuthContext";
 const Login = () => {
     const [username,setUsername] = useState();
     const [password,setPassword] = useState();
     const [loginMessage, setLoginMessage] = useState(false);
     const navigate = useNavigate();
-
+    const authContext = useAuth();
  function handlerUsername(event) {
      console.log(event);
      setUsername(event.target.value);
@@ -15,9 +16,10 @@ const Login = () => {
     const handlerPassword = (event) =>{
         setPassword((event.target.value));
     }
-    const validate = async () => {
-        console.log(username === "123" && password === "123");
-     await setLoginMessage((username === "123" && password === "123") ? "Success" : "Failure");
+    const validate =  () => {
+     authContext.setAuthenticated(username === "123" && password === "123");
+     console.log(authContext.authenticated);
+      setLoginMessage( authContext.authenticated ? "Success" : "Failure");
      if (loginMessage === "Success") navigate(`/welcome/${username}`);
     }
 
