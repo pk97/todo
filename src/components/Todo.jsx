@@ -1,36 +1,38 @@
 import './Todo.css';
-import Login from "./Login";
+import TodoList from "./TodoList";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HeaderComponent from "./HeaderComponent";
+import Login from "./Login";
+import Logout from "./Logout";
 import Welcome from "./Welcome";
 import Error from "./Error";
+import {useAuth} from "./security/AuthContext";
+
 const Todo = () => {
-    const todos = [
-        {id: '1', description: 'Work to do'},
-        {id: '2', description: 'Read Books'},
-        {id: '3', description: 'Document learnings'},
-        {id: '4', description: 'Work to do'},
-    ];
+    const authContext = useAuth();
+    const athorizedPath = ({child}) => {
+        if (authContext.authenticated)
+            return (child);
+        else
+            return (<Login/>);
+    }
 
     return (
         <>
-            <div className="container"> Todo List</div>
-            <table className="table">
-                <thead>
-                <tr>
-                    <th>Sno</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                {/*use ( pareenthises becausing returning JSX*/}
-                {todos.map(todo => (
-                    <tr>
-                        <td>{todo.id}</td>
-                        <td>{todo.description}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            <BrowserRouter>
+                <HeaderComponent/>
+                <hr/>
+                <Routes>
+                    <Route path='/' element={<Login/>}></Route>
+                    <Route path='/login' element={<Login/>}></Route>
+                    <Route path='/logout' element={<Logout/>}></Route>
+
+                    <Route path='/todo' element={athorizedPath(<TodoList/>)}></Route>
+                    <Route path='/welcome/:username' element={athorizedPath(<Welcome/>)}></Route>
+
+                    <Route path={'/*'} element={<Error/>}></Route>
+                </Routes>
+            </BrowserRouter>
         </>
     );
 };

@@ -15,19 +15,7 @@ function App() {
   return (
       <div className="App">
           <AuthProvider>
-              <BrowserRouter>
-                  <HeaderComponent/>
-                  <hr/>
-                  <Routes>
-                      <Route path='/' element={<Login/>}></Route>
-                      <Route path='/login' element={<Login/>}></Route>
-                      <Route path='/todo' element={<Todo/>}></Route>
-                      <Route path='/logout' element={<Logout/>}></Route>
-                      <Route path='/welcome/:username' element={<Welcome/>}></Route>
-
-                      <Route path={'/*'} element={<Error/>}></Route>
-                  </Routes>
-              </BrowserRouter>
+              <Todo/>
               <hr/>
               <footer className={"Footer"}> Footer text</footer>
           </AuthProvider>

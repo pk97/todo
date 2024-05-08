@@ -5,15 +5,22 @@ const HeaderComponent = () => {
     const authContext = useAuth();
     const navigate = useNavigate();
 
+    const text = (authenticated) => authenticated ? "Logout": "Login"
+
     return (<header>
         <h1> Todo Application </h1>
         <button className="logoutButton" onClick={() => {
-            authContext.setAuthenticated(false);
-            console.log(authContext.authenticated);
-            navigate('/logout');
+            if (authContext.authenticated) {
+                authContext.setAuthenticated(false);
+                console.log(authContext.authenticated);
+                navigate('/logout');
+            }
+            else {
+                navigate('/login');
+        }
         }
         }>
-            Logout</button>
+            {text(authContext.authenticated)}</button>
         <hr/>
     </header>);
 }
