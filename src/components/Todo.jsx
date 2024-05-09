@@ -10,7 +10,7 @@ import {useAuth} from "./security/AuthContext";
 
 const Todo = () => {
     const authContext = useAuth();
-    const athorizedPath = ({child}) => {
+    const authorizedPath = (child) => {
         if (authContext.authenticated)
             return (child);
         else
@@ -27,8 +27,8 @@ const Todo = () => {
                     <Route path='/login' element={<Login/>}></Route>
                     <Route path='/logout' element={<Logout/>}></Route>
 
-                    <Route path='/todo' element={athorizedPath(<TodoList/>)}></Route>
-                    <Route path='/welcome/:username' element={athorizedPath(<Welcome/>)}></Route>
+                    <Route path='/todo' element={authorizedPath(<TodoList/>)}></Route>
+                    <Route path='/welcome/:username' element={authorizedPath(<Welcome/>)}></Route>
 
                     <Route path={'/*'} element={<Error/>}></Route>
                 </Routes>

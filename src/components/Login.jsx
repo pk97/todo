@@ -17,10 +17,10 @@ const Login = () => {
         setPassword((event.target.value));
     }
     const validate =  () => {
-     authContext.setAuthenticated(username === "123" && password === "123");
-     console.log(authContext.authenticated);
-      setLoginMessage( authContext.authenticated ? "Success" : "Failure");
-     if (loginMessage === "Success") navigate(`/welcome/${username}`);
+        let isAuthenticated = username === "123" && password === "123";
+        authContext.setAuthenticated(isAuthenticated);
+      setLoginMessage( isAuthenticated ? "Success" : "Failure");
+     if (isAuthenticated) navigate(`/welcome/${username}`);
     }
 
     return (
