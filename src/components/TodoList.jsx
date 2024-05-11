@@ -8,7 +8,6 @@ const TodoList = () => {
     useEffect( () => {
         const func = async () => {
             const x = await fetchTodos('123');
-            console.log(x);
             setTodos(x);
         }
         func();
@@ -23,6 +22,8 @@ const TodoList = () => {
         <tr>
             <th>Sno</th>
             <th>Description</th>
+            <th>Date</th>
+            <th>Checked</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,8 @@ const TodoList = () => {
             <tr>
                 <td>{todo.id}</td>
                 <td>{todo.description}</td>
+                <td>{todo.date}</td>
+                <td>{todo.done ? "true" : "false"}</td>
             </tr>
         ))}
         </tbody>
