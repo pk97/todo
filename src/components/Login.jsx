@@ -9,7 +9,6 @@ const Login = () => {
     const navigate = useNavigate();
     const authContext = useAuth();
  function handlerUsername(event) {
-     console.log(event);
      setUsername(event.target.value);
  }
 

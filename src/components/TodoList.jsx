@@ -1,10 +1,18 @@
+import {useEffect, useState} from "react";
+import {fetchTodos} from "../api";
+
 const TodoList = () => {
-    const todos = [
-        {id: '1', description: 'Work to do'},
-        {id: '2', description: 'Read Books'},
-        {id: '3', description: 'Document learnings'},
-        {id: '4', description: 'Work to do'},
-    ];
+
+    const [todos, setTodos] = useState([{}]);
+
+    useEffect( () => {
+        const func = async () => {
+            const x = await fetchTodos('123');
+            console.log(x);
+            setTodos(x);
+        }
+        func();
+    }, []);
 
 
     return (
