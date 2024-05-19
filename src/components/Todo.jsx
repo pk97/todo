@@ -7,6 +7,7 @@ import Logout from "./Logout";
 import Welcome from "./Welcome";
 import Error from "./Error";
 import {useAuth} from "./security/AuthContext";
+import TodoComponent from "./TodoComponent";
 
 const Todo = () => {
     const authContext = useAuth();
@@ -27,6 +28,7 @@ const Todo = () => {
                     <Route path='/login' element={<Login/>}></Route>
                     <Route path='/logout' element={<Logout/>}></Route>
 
+                    <Route path='/:username/todos/:todoId' element={authorizedPath(<TodoComponent/>)}></Route>
                     <Route path='/todo' element={authorizedPath(<TodoList/>)}></Route>
                     <Route path='/welcome/:username' element={authorizedPath(<Welcome/>)}></Route>
 

@@ -20,3 +20,14 @@ export const deleteTodoFor = (userName, todoId) => {
         }
     )
 }
+
+export const fetchTodo = (userName, todoId) => {
+    return apiClient.get(
+        `todos/${userName}?todoId=${todoId}`
+    )
+        .then( response => {
+            console.log('succesfully fetch a todos')
+            return response.data;
+        })
+        .catch( error => console.log(error))
+}

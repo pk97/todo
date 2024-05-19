@@ -1,11 +1,14 @@
 import {useEffect, useState} from "react";
 import {deleteTodoFor, fetchTodos} from "../api";
 import {useAuth} from "./security/AuthContext";
+import {useNavigate} from "react-router-dom";
+import todo from "./Todo";
 
 const TodoList = () => {
 
     const [todos, setTodos] = useState([{}]);
     const [message, setMessage] = useState();
+    const navigate = useNavigate();
 
     const authContext = useAuth();
 
@@ -27,6 +30,10 @@ const TodoList = () => {
             console.log(error);
             setMessage('Error while deleting');
         }
+    }
+
+    const updateTodo = async (userName, todoId) => {
+        navigate(`/${userName}/todos/${todoId}`)
     }
 
 
@@ -56,7 +63,14 @@ const TodoList = () => {
                         <td>{todo.date}</td>
                         <td>{todo.done ? "true" : "false"}</td>
                         <td>
-                            <button class="btn btn-warning" onClick={() => deleteTodo(authContext.username, todo.id)}> Delete</button>
+                            <button className="btn btn-warning"
+                                    onClick={() => deleteTodo(authContext.username, todo.id)}> Delete
+                            </button>
+                        </td>
+                        <td>
+                            <button className="btn btn-info"
+                                    onClick={() => updateTodo(authContext.username, todo.id)}> Update
+                            </button>
                         </td>
                     </tr>
                 ))}
