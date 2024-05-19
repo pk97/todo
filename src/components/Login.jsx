@@ -18,6 +18,7 @@ const Login = () => {
     const validate =  () => {
         let isAuthenticated = username === "123" && password === "123";
         authContext.setAuthenticated(isAuthenticated);
+        authContext.setUsername(username);
       setLoginMessage( isAuthenticated ? "Success" : "Failure");
      if (isAuthenticated) navigate(`/welcome/${username}`);
     }
